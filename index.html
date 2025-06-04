@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Madhu Jashwanth - Cybersecurity & Network Engineering Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a3a 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Section */
+        .header {
+            background: rgba(15, 15, 35, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .hero {
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.5)); }
+            to { filter: drop-shadow(0 0 30px rgba(255, 0, 255, 0.5)); }
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(0, 255, 255, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.3);
+        }
+
+        /* Navigation */
+        .nav {
+            background: rgba(26, 26, 58, 0.9);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: #00ffff;
+        }
+
+        /* Sections */
+        .section {
+            padding: 4rem 0;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: white;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 255, 255, 0.2);
+            border-color: rgba(0, 255, 255, 0.5);
+        }
+
+        .skill-category h3 {
+            color: #00ffff;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: rgba(0, 255, 255, 0.1);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 0, 255, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 0, 255, 0.1), transparent);
+            transition: all 0.6s ease;
+        }
+
+        .project-card:hover::before {
+            left: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 0, 255, 0.2);
+            border-color: rgba(255, 0, 255, 0.5);
+        }
+
+        .project-card h3 {
+            color: #ff00ff;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .project-card p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+        }
+
+        .project-stats {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .project-stat {
+            background: rgba(255, 0, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            color: #ff00ff;
+            font-weight: bold;
+            border: 1px solid rgba(255, 0, 255, 0.3);
+        }
+
+        /* Certifications */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .cert-item {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .cert-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
+        }
+
+        .cert-item h4 {
+            color: #00ffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .cert-item p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* Education */
+        .education-timeline {
+            position: relative;
+            margin: 2rem 0;
+        }
+
+        .education-item {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .education-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
+        }
+
+        .education-item h3 {
+            color: #00ffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-item .gpa {
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: rgba(15, 15, 35, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 255, 255, 0.2);
+        }
+
+        .contact-card h4 {
+            color: #00ffff;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .contact-card a:hover {
+            color: #00ffff;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="hero">
+                <h1>PONNAPATI MADHU JASHWANTH</h1>
+                <p>Computer Science Engineering Student</p>
+                <p>Passionate about Cybersecurity | Network Security | Ethical Hacking | Machine Learning</p>
+                
+                <div class="contact-info">
+                    <a href="mailto:madhujaswanth74@gmail.com" class="contact-item">📧 Email</a>
+                    <a href="tel:+919347656687" class="contact-item">📱 +91 93476 56687</a>
+                    <a href="https://linkedin.com/in/madhu-jashwanth-580238255" class="contact-item">💼 LinkedIn</a>
+                    <a href="https://github.com/Jashwanth33" class="contact-item">🔗 GitHub</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="nav">
+        <div class="container">
+            <ul class="nav-links">
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section id="skills" class="section">
+            <div class="container">
+                <h2 class="section-title">Technical Expertise</h2>
+                <div class="skills-grid">
+                    <div class="skill-category floating">
+                        <h3>🛡️ Cybersecurity</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Penetration Testing</span>
+                            <span class="skill-tag">Ethical Hacking</span>
+                            <span class="skill-tag">Vulnerability Assessment</span>
+                            <span class="skill-tag">Network Security</span>
+                            <span class="skill-tag">Digital Forensics</span>
+                            <span class="skill-tag">SIEM Implementation</span>
+                            <span class="skill-tag">Risk Assessment</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category floating">
+                        <h3>🔧 Security Tools</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Wireshark</span>
+                            <span class="skill-tag">Nmap</span>
+                            <span class="skill-tag">Metasploit</span>
+                            <span class="skill-tag">Burp Suite</span>
+                            <span class="skill-tag">Kali Linux</span>
+                            <span class="skill-tag">OWASP Tools</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category floating">
+                        <h3>🌐 Networking</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">TCP/IP</span>
+                            <span class="skill-tag">HTTP/HTTPS</span>
+                            <span class="skill-tag">Firewall Configuration</span>
+                            <span class="skill-tag">VPN</span>
+                            <span class="skill-tag">Network Troubleshooting</span>
+                            <span class="skill-tag">Protocol Analysis</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category floating">
+                        <h3>💻 Programming</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Java</span>
+                            <span class="skill-tag">C/C++</span>
+                            <span class="skill-tag">SQL</span>
+                            <span class="skill-tag">Flask</span>
+                            <span class="skill-tag">REST APIs</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category floating">
+                        <h3>🤖 Machine Learning</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Scikit-learn</span>
+                            <span class="skill-tag">NumPy</span>
+                            <span class="skill-tag">Pandas</span>
+                            <span class="skill-tag">Random Forest</span>
+                            <span class="skill-tag">Anomaly Detection</span>
+                            <span class="skill-tag">Data Analysis</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category floating">
+                        <h3>☁️ Cloud & Infrastructure</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">AWS</span>
+                            <span class="skill-tag">Google Cloud Platform</span>
+                            <span class="skill-tag">Linux/Ubuntu</span>
+                            <span class="skill-tag">Windows Server</span>
+                            <span class="skill-tag">Database Management</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section">
+            <div class="container">
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <h3>🏥 Healthcare Fraud Detection System</h3>
+                        <p>Advanced machine learning system for detecting fraudulent healthcare claims using sophisticated algorithms and real-time analysis.</p>
+                        <div class="project-stats">
+                            <span class="project-stat">89% Accuracy</span>
+                            <span class="project-stat">ML/AI</span>
+                            <span class="project-stat">2025</span>
+                        </div>
+                        <p><strong>Technologies:</strong> Python, Scikit-learn, Random Forest, SVM, Pandas, NumPy</p>
+                        <p><strong>Impact:</strong> Developed anomaly detection algorithms capable of processing large datasets and identifying fraudulent patterns with high precision.</p>
+                    </div>
+                    
+                    <div class="project-card">
+                        <h3>🌾 Real-Time Crop Recommendation System</h3>
+                        <p>Intelligent agricultural system providing data-driven crop recommendations based on environmental factors and historical data.</p>
+                        <div class="project-stats">
+                            <span class="project-stat">92% Accuracy</span>
+                            <span class="project-stat">Web App</span>
+                            <span class="project-stat">2024</span>
+                        </div>
+                        <p><strong>Technologies:</strong> Python, Flask, Machine Learning, Random Forest, Web Development</p>
+                        <p><strong>Impact:</strong> Created user-friendly interface for farmers to get real-time crop recommendations, improving agricultural decision-making.</p>
+                    </div>
+                    
+                    <div class="project-card">
+                        <h3>🌉 Automated Hydraulic Bridge Control</h3>
+                        <p>IoT-based automation system for hydraulic bridge operations with integrated safety protocols and sensor monitoring.</p>
+                        <div class="project-stats">
+                            <span class="project-stat">Embedded</span>
+                            <span class="project-stat">IoT</span>
+                            <span class="project-stat">2023</span>
+                        </div>
+                        <p><strong>Technologies:</strong> Arduino, C++, Embedded Systems, Sensor Integration, Automation</p>
+                        <p><strong>Impact:</strong> Implemented comprehensive safety protocols and reliable sensor integration for automated bridge operations.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="certifications" class="section">
+            <div class="container">
+                <h2 class="section-title">Professional Certifications</h2>
+                <div class="cert-grid">
+                    <div class="cert-item">
+                        <h4>🛡️ Google Cybersecurity Professional</h4>
+                        <p>Coursera - 2025</p>
+                    </div>
+                    <div class="cert-item">
+                        <h4>🔐 Ethical Hacking Fundamentals</h4>
+                        <p>Cisco Networking Academy - 2025</p>
+                    </div>
+                    <div class="cert-item">
+                        <h4>🐍 Python Essentials 1 & 2</h4>
+                        <p>Cisco Networking Academy - 2025</p>
+                    </div>
+                    <div class="cert-item">
+                        <h4>🔒 Cybersecurity Virtual Internship</h4>
+                        <p>Palo Alto Networks - 2023</p>
+                    </div>
+                    <div class="cert-item">
+                        <h4>💻 Python Programming</h4>
+                        <p>Infosys Springboard - 2023</p>
+                    </div>
+                    <div class="cert-item">
+                        <h4>📊 Data Structures & Algorithms</h4>
+                        <p>Infosys Springboard - 2023</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="section">
+            <div class="container">
+                <h2 class="section-title">Educational Background</h2>
+                <div class="education-timeline">
+                    <div class="education-item">
+                        <h3>Bachelor of Technology - Computer Science & Engineering</h3>
+                        <p><strong>Vel Tech University</strong> | Chennai, India | 2022 - 2026</p>
+                        <p class="gpa">CGPA: 9.1/10.0 (Current)</p>
+                        <p><strong>Relevant Coursework:</strong> Network Security, Cybersecurity, Data Structures, Operating Systems, Database Management</p>
+                    </div>
+                    
+                    <div class="education-item">
+                        <h3>Higher Secondary Certificate (MPC)</h3>
+                        <p><strong>Sai Siddhartha Junior College</strong> | Banaganapalli, India | 2020 - 2022</p>
+                        <p class="gpa">CGPA: 8.45/10.0</p>
+                    </div>
+                    
+                    <div class="education-item">
+                        <h3>Secondary School Certificate</h3>
+                        <p><strong>Nehru English Medium High School</strong> | Banaganapalli, India | 2019 - 2020</p>
+                        <p class="gpa">CGPA: 10.0/10.0</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <h2 class="section-title">Let's Connect</h2>
+                <p style="color: rgba(255,255,255,0.8); font-size: 1.1rem; margin-bottom: 2rem;">
+                    CSE Student passionate about cybersecurity and network security. Ready to contribute to securing digital infrastructure through innovative solutions.
+                </p>
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <h4>📧 Email</h4>
+                        <a href="mailto:madhujaswanth74@gmail.com">madhujaswanth74@gmail.com</a>
+                    </div>
+                    <div class="contact-card">
+                        <h4>📱 Phone</h4>
+                        <a href="tel:+919347656687">+91 93476 56687</a>
+                    </div>
+                    <div class="contact-card">
+                        <h4>💼 LinkedIn</h4>
+                        <a href="https://linkedin.com/in/madhu-jashwanth-580238255" target="_blank">Professional Profile</a>
+                    </div>
+                    <div class="contact-card">
+                        <h4>🔗 GitHub</h4>
+                        <a href="https://github.com/Jashwanth33" target="_blank">Code Repository</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scrolling effects
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                const scroll = window.pageYOffset;
+                const windowHeight = window.innerHeight;
+
+                if (scroll > sectionTop - windowHeight + 100) {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        // Initialize sections with animation
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(50px)';
+            section.style.transition = 'all 0.6s ease';
+        });
+
+        // Trigger initial animation
+        window.dispatchEvent(new Event('scroll'));
+    </script>
+</body>
+</html>

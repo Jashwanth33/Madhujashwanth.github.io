@@ -1,1191 +1,875 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Madhu Jashwanth - Advanced Cybersecurity Portfolio</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
-        
-        :root {
-            --primary-glow: #00ff88;
-            --secondary-glow: #ff0080;
-            --accent-blue: #00d4ff;
-            --deep-purple: #6a0d83;
-            --cyber-green: #39ff14;
-            --neon-pink: #ff073a;
-            --dark-bg: #0a0a0f;
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Rajdhani', sans-serif;
-            line-height: 1.6;
-            color: #fff;
-            background: var(--dark-bg);
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* Animated Background */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(0, 255, 136, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 0, 128, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(0, 212, 255, 0.05) 0%, transparent 50%);
-            z-index: -1;
-            animation: backgroundPulse 8s ease-in-out infinite alternate;
-        }
-
-        @keyframes backgroundPulse {
-            0% { filter: blur(0px) brightness(1); }
-            100% { filter: blur(2px) brightness(1.2); }
-        }
-
-        /* Matrix Rain Effect */
-        .matrix-rain {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-            opacity: 0.1;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Advanced Header */
-        .header {
-            background: linear-gradient(135deg, rgba(10, 10, 15, 0.95), rgba(106, 13, 131, 0.1));
-            backdrop-filter: blur(20px);
-            padding: 4rem 0;
-            position: relative;
-            overflow: hidden;
-            border-bottom: 1px solid var(--glass-border);
-        }
-
-        .header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(from 0deg, transparent, var(--primary-glow), transparent, var(--secondary-glow), transparent);
-            animation: rotate 20s linear infinite;
-            opacity: 0.1;
-        }
-
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .hero {
-            text-align: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-title {
-            font-family: 'Orbitron', monospace;
-            font-size: clamp(2.5rem, 6vw, 5rem);
-            font-weight: 900;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, var(--primary-glow), var(--accent-blue), var(--secondary-glow));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 0 50px rgba(0, 255, 136, 0.3);
-            animation: titleGlow 3s ease-in-out infinite alternate;
-            letter-spacing: 0.1em;
-        }
-
-        @keyframes titleGlow {
-            from { 
-                filter: drop-shadow(0 0 20px rgba(0, 255, 136, 0.5));
-                transform: scale(1);
-            }
-            to { 
-                filter: drop-shadow(0 0 40px rgba(255, 0, 128, 0.7));
-                transform: scale(1.02);
-            }
-        }
-
-        .hero-subtitle {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--accent-blue);
-            margin-bottom: 1rem;
-            opacity: 0.9;
-            animation: fadeInUp 1s ease-out 0.5s both;
-        }
-
-        .hero-description {
-            font-size: 1.2rem;
-            margin-bottom: 3rem;
-            opacity: 0.8;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            animation: fadeInUp 1s ease-out 1s both;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            animation: fadeInUp 1s ease-out 1.5s both;
-        }
-
-        .contact-item {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            border: 1px solid var(--glass-border);
-            color: white;
-            text-decoration: none;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            font-weight: 500;
-        }
-
-        .contact-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.2), transparent);
-            transition: all 0.6s ease;
-        }
-
-        .contact-item:hover::before {
-            left: 100%;
-        }
-
-        .contact-item:hover {
-            background: rgba(0, 255, 136, 0.1);
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 30px rgba(0, 255, 136, 0.2);
-            border-color: var(--primary-glow);
-        }
-
-        /* Futuristic Navigation */
-        .nav {
-            background: rgba(10, 10, 15, 0.9);
-            backdrop-filter: blur(15px);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid var(--glass-border);
-        }
-
-        .nav-links {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            position: relative;
-            font-weight: 600;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary-glow), var(--accent-blue));
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-glow);
-            transform: translateY(-2px);
-        }
-
-        /* Section Styling */
-        .section {
-            padding: 6rem 0;
-            position: relative;
-        }
-
-        .section-title {
-            text-align: center;
-            font-family: 'Orbitron', monospace;
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            font-weight: 700;
-            margin-bottom: 4rem;
-            background: linear-gradient(45deg, var(--primary-glow), var(--accent-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 150px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-glow), var(--secondary-glow));
-            margin: 2rem auto;
-            border-radius: 2px;
-            box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
-        }
-
-        /* Experience Section */
-        .experience-timeline {
-            position: relative;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .experience-timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background: linear-gradient(180deg, var(--primary-glow), var(--secondary-glow));
-            transform: translateX(-50%);
-            box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
-        }
-
-        .experience-item {
-            position: relative;
-            margin: 3rem 0;
-            opacity: 0;
-            transform: translateY(50px);
-            animation: slideInUp 0.8s ease-out forwards;
-        }
-
-        .experience-item:nth-child(even) {
-            animation-delay: 0.2s;
-        }
-
-        .experience-item:nth-child(odd) {
-            animation-delay: 0.4s;
-        }
-
-        .experience-content {
-            background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 2.5rem;
-            width: 45%;
-            position: relative;
-            transition: all 0.4s ease;
-        }
-
-        .experience-item:nth-child(even) .experience-content {
-            margin-left: auto;
-            margin-right: 0;
-        }
-
-        .experience-content::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            width: 0;
-            height: 0;
-            border: 15px solid transparent;
-            transform: translateY(-50%);
-        }
-
-        .experience-item:nth-child(odd) .experience-content::before {
-            right: -30px;
-            border-left-color: var(--glass-border);
-        }
-
-        .experience-item:nth-child(even) .experience-content::before {
-            left: -30px;
-            border-right-color: var(--glass-border);
-        }
-
-        .experience-content:hover {
-            transform: scale(1.05);
-            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.2);
-            border-color: var(--primary-glow);
-        }
-
-        .experience-date {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            background: linear-gradient(45deg, var(--primary-glow), var(--accent-blue));
-            color: var(--dark-bg);
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
-            z-index: 2;
-        }
-
-        .experience-title {
-            color: var(--primary-glow);
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .experience-company {
-            color: var(--accent-blue);
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .experience-description {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.8;
-        }
-
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Enhanced Skills Grid */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .skill-category {
-            background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 2.5rem;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .skill-category::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.1), transparent);
-            transition: all 0.8s ease;
-        }
-
-        .skill-category:hover::before {
-            left: 100%;
-        }
-
-        .skill-category:hover {
-            transform: translateY(-15px) rotate(2deg);
-            box-shadow: 0 25px 50px rgba(0, 255, 136, 0.2);
-            border-color: var(--primary-glow);
-        }
-
-        .skill-category h3 {
-            color: var(--primary-glow);
-            margin-bottom: 1.5rem;
-            font-size: 1.4rem;
-            font-weight: 700;
-        }
-
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-        }
-
-        .skill-tag {
-            background: rgba(0, 255, 136, 0.1);
-            color: white;
-            padding: 0.8rem 1.2rem;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            border: 1px solid rgba(0, 255, 136, 0.3);
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        .skill-tag:hover {
-            background: rgba(0, 255, 136, 0.2);
-            transform: scale(1.1);
-            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
-        }
-
-        /* Enhanced Projects */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-
-        .project-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 2.5rem;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 0, 128, 0.1), transparent);
-            transition: all 0.8s ease;
-        }
-
-        .project-card:hover::before {
-            left: 100%;
-        }
-
-        .project-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(255, 0, 128, 0.2);
-            border-color: var(--secondary-glow);
-        }
-
-        .project-card h3 {
-            color: var(--secondary-glow);
-            margin-bottom: 1.5rem;
-            font-size: 1.4rem;
-            font-weight: 700;
-        }
-
-        .project-stats {
-            display: flex;
-            gap: 1rem;
-            margin: 1.5rem 0;
-            flex-wrap: wrap;
-        }
-
-        .project-stat {
-            background: rgba(255, 0, 128, 0.1);
-            padding: 0.8rem 1.2rem;
-            border-radius: 15px;
-            color: var(--secondary-glow);
-            font-weight: 700;
-            border: 1px solid rgba(255, 0, 128, 0.3);
-            font-size: 0.9rem;
-        }
-
-        /* Certifications Grid */
-        .cert-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .cert-item {
-            background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            border: 1px solid var(--glass-border);
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cert-item::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(from 0deg, transparent, var(--accent-blue), transparent);
-            animation: rotate 10s linear infinite;
-            opacity: 0.1;
-        }
-
-        .cert-item:hover {
-            transform: scale(1.08) rotate(3deg);
-            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
-            border-color: var(--accent-blue);
-        }
-
-        .cert-item h4 {
-            color: var(--accent-blue);
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-
-        /* Education Timeline */
-        .education-item {
-            background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 2.5rem;
-            margin-bottom: 2rem;
-            transition: all 0.4s ease;
-            position: relative;
-        }
-
-        .education-item:hover {
-            transform: translateX(15px) scale(1.02);
-            box-shadow: 0 15px 40px rgba(0, 255, 136, 0.2);
-            border-color: var(--primary-glow);
-        }
-
-        .education-item h3 {
-            color: var(--primary-glow);
-            margin-bottom: 0.5rem;
-            font-size: 1.3rem;
-        }
-
-        .gpa {
-            background: linear-gradient(45deg, var(--primary-glow), var(--secondary-glow));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 700;
-            font-size: 1.2rem;
-        }
-
-        /* Contact Section */
-        .contact-section {
-            background: linear-gradient(135deg, rgba(10, 10, 15, 0.9), rgba(106, 13, 131, 0.1));
-            backdrop-filter: blur(20px);
-            padding: 6rem 0;
-            text-align: center;
-            border-top: 1px solid var(--glass-border);
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .contact-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 2.5rem;
-            transition: all 0.4s ease;
-        }
-
-        .contact-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 25px 50px rgba(0, 255, 136, 0.2);
-            border-color: var(--primary-glow);
-        }
-
-        .contact-card h4 {
-            color: var(--primary-glow);
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .contact-card a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .contact-card a:hover {
-            color: var(--primary-glow);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .experience-timeline::before {
-                left: 20px;
-            }
-            
-            .experience-content {
-                width: calc(100% - 60px);
-                margin-left: 60px !important;
-            }
-            
-            .experience-content::before {
-                left: -30px !important;
-                border-right-color: var(--glass-border) !important;
-                border-left-color: transparent !important;
-            }
-            
-            .experience-date {
-                left: 20px;
-                transform: translateY(-50%);
-            }
-            
-            .nav-links {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .projects-grid,
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .contact-info {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-
-        /* Scroll Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Floating particles */
-        .particle {
-            position: absolute;
-            background: var(--primary-glow);
-            border-radius: 50%;
-            pointer-events: none;
-            opacity: 0.1;
-            animation: float 6s infinite ease-in-out;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
-    </style>
-</head>
-<body>
-    <canvas class="matrix-rain" id="matrixCanvas"></canvas>
-
-    <header class="header">
-        <div class="container">
-            <div class="hero">
-                <h1 class="hero-title">PONNAPATI MADHU JASHWANTH</h1>
-                <p class="hero-subtitle">Fresher | Software Engineer | Cybersecurity Specialist | Network Engineer</p>
-                <p class="hero-description">
-                    Computer Science Engineering fresher transitioning from AI/ML background to cybersecurity and software development. 
-                    Seeking entry-level positions as Software Engineer, Cybersecurity Specialist, and Network Engineer. 
-                    Strong foundation in programming and development, eager to contribute to secure software solutions 
-                    and network infrastructure protection.
-                </p>
-                
-                <div class="contact-info">
-                    <a href="mailto:madhujaswanth74@gmail.com" class="contact-item">
-                        <span>📧</span> Email
-                    </a>
-                    <a href="tel:+91xxxxxxxxx" class="contact-item">
-                        <span>📱</span> +91 xxxxxxxxx
-                    </a>
-                    <a href="https://linkedin.com/in/madhu-jashwanth-580238255" class="contact-item" target="_blank">
-                        <span>💼</span> LinkedIn
-                    </a>
-                    <a href="https://github.com/Jashwanth33" class="contact-item" target="_blank">
-                        <span>🔗</span> GitHub
-                    </a>
-                </div>
+import React, { useState, useEffect, useRef } from 'react';
+import { Camera, Code, Shield, Award, Mail, Github, Linkedin, Twitter, Download, Moon, Sun, Menu, X, ChevronDown, ExternalLink, Terminal, Zap, Users, TrendingUp, Book, MessageSquare, Play, CheckCircle, Star, Target, Cpu, Lock, Database, Cloud, Eye, Search, Brain, Network, FileText, Globe } from 'lucide-react';
+
+const Portfolio = () => {
+  const [darkMode, setDarkMode] = useState(true);
+  const [activeSection, setActiveSection] = useState('home');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [projectFilter, setProjectFilter] = useState('all');
+  const [typedText, setTypedText] = useState('');
+  const [currentRole, setCurrentRole] = useState(0);
+  const [showChatbot, setShowChatbot] = useState(false);
+  const [chatMessages, setChatMessages] = useState([
+    { type: 'bot', text: 'Hi! I\'m Madhu\'s AI assistant. Ask me about his cybersecurity experience, projects, or skills!' }
+  ]);
+  const [chatInput, setChatInput] = useState('');
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
+  const roles = [
+    'Cybersecurity Student',
+    'Penetration Tester',
+    'Security Researcher',
+    'Bug Bounty Hunter',
+    'Ethical Hacker'
+  ];
+
+  const navItems = [
+    { id: 'home', label: 'Home', icon: <Zap size={18} /> },
+    { id: 'about', label: 'About', icon: <Users size={18} /> },
+    { id: 'skills', label: 'Skills', icon: <Code size={18} /> },
+    { id: 'experience', label: 'Experience', icon: <TrendingUp size={18} /> },
+    { id: 'projects', label: 'Projects', icon: <Terminal size={18} /> },
+    { id: 'certifications', label: 'Certifications', icon: <Award size={18} /> },
+    { id: 'contact', label: 'Contact', icon: <Mail size={18} /> }
+  ];
+
+  // Real Skills Data from Resume
+  const skills = [
+    {
+      category: 'Security Testing & Tools',
+      icon: <Shield className="w-8 h-8" />,
+      items: [
+        { name: 'Burp Suite Pro', level: 95, color: 'from-orange-400 to-red-500' },
+        { name: 'OWASP ZAP', level: 90, color: 'from-purple-400 to-pink-500' },
+        { name: 'Nessus & Qualys', level: 88, color: 'from-green-400 to-teal-500' },
+        { name: 'Wireshark', level: 92, color: 'from-blue-400 to-cyan-500' },
+        { name: 'Nmap & Gobuster', level: 90, color: 'from-cyan-400 to-blue-500' },
+        { name: 'SIEM Tools', level: 85, color: 'from-indigo-400 to-purple-500' }
+      ]
+    },
+    {
+      category: 'Programming & Development',
+      icon: <Code className="w-8 h-8" />,
+      items: [
+        { name: 'Python (Security Automation)', level: 93, color: 'from-blue-400 to-cyan-400' },
+        { name: 'Java', level: 85, color: 'from-red-400 to-orange-400' },
+        { name: 'C Programming', level: 82, color: 'from-gray-500 to-gray-700' },
+        { name: 'SQL & MySQL', level: 88, color: 'from-blue-500 to-indigo-500' }
+      ]
+    },
+    {
+      category: 'Cybersecurity Domains',
+      icon: <Lock className="w-8 h-8" />,
+      items: [
+        { name: 'VAPT (Vulnerability Assessment)', level: 92, color: 'from-red-500 to-pink-500' },
+        { name: 'Web Application Security', level: 90, color: 'from-purple-400 to-pink-400' },
+        { name: 'Bug Bounty Hunting', level: 85, color: 'from-yellow-400 to-orange-500' },
+        { name: 'Threat Detection & Analysis', level: 87, color: 'from-green-400 to-cyan-500' },
+        { name: 'Network Security', level: 88, color: 'from-blue-400 to-purple-500' },
+        { name: 'Incident Response', level: 83, color: 'from-cyan-400 to-teal-500' }
+      ]
+    },
+    {
+      category: 'Additional Tools & Tech',
+      icon: <Terminal className="w-8 h-8" />,
+      items: [
+        { name: 'Nikto', level: 85, color: 'from-green-500 to-teal-500' },
+        { name: 'Postman (API Testing)', level: 88, color: 'from-orange-400 to-red-400' },
+        { name: 'Flask Framework', level: 82, color: 'from-gray-400 to-gray-600' },
+        { name: 'Machine Learning (Scikit-learn)', level: 80, color: 'from-purple-400 to-indigo-500' }
+      ]
+    }
+  ];
+
+  // Real Projects from Resume
+  const projects = [
+    {
+      title: 'Healthcare Fraud Detection System',
+      description: 'Engineered scalable fraud detection system achieving 89% accuracy using Random Forest and SVM algorithms. Led technical requirements gathering and stakeholder collaboration.',
+      category: 'ml',
+      tech: ['Python', 'Pandas', 'NumPy', 'Random Forest', 'SVM'],
+      stats: { accuracy: '89%', role: 'Technical Lead', year: 'May 2025' },
+      features: ['Random Forest Algorithm', 'SVM Implementation', 'Performance Optimization', 'Stakeholder Collaboration'],
+      demoLink: '#',
+      githubLink: '#',
+      image: '🏥'
+    },
+    {
+      title: 'Real-Time Crop Recommendation System',
+      description: 'Developed end-to-end recommendation system with 92% accuracy using Random Forest algorithms. Built responsive web interface using Flask with real-time data processing.',
+      category: 'webapp',
+      tech: ['Python', 'Flask', 'Machine Learning', 'Random Forest'],
+      stats: { accuracy: '92%', role: 'Software Engineer', year: 'Dec 2024' },
+      features: ['Real-time Processing', 'Responsive Web UI', 'ML Algorithms', 'Flask Backend'],
+      demoLink: '#',
+      githubLink: '#',
+      image: '🌾'
+    },
+    {
+      title: 'Automated Hydraulic Bridge Control System',
+      description: 'Designed and implemented Arduino-based automation system with C programming. Developed comprehensive safety protocols and real-time sensor integration.',
+      category: 'iot',
+      tech: ['Arduino', 'C Programming', 'IoT', 'Sensors'],
+      stats: { type: 'IoT Project', role: 'Project Lead', year: 'Jan 2023' },
+      features: ['Arduino Programming', 'Safety Protocols', 'Sensor Integration', 'Real-time Control'],
+      demoLink: '#',
+      githubLink: '#',
+      image: '🌉'
+    },
+    {
+      title: 'Web Security Assessment Tool',
+      description: 'Custom security testing tool developed during internship for automated vulnerability scanning and reconnaissance on live web applications.',
+      category: 'security',
+      tech: ['Python', 'Burp Suite', 'OWASP ZAP', 'Nmap'],
+      stats: { scans: '50+', vulns: '100+', type: 'Security Tool' },
+      features: ['Automated Scanning', 'Vulnerability Detection', 'Report Generation', 'API Integration'],
+      demoLink: '#',
+      githubLink: '#',
+      image: '🔐'
+    }
+  ];
+
+  // Real Certifications from Resume
+  const certifications = [
+    { name: 'Google Cybersecurity Professional', issuer: 'Google', year: '2025', icon: '🏆', color: 'from-blue-400 to-cyan-500' },
+    { name: 'Ethical Hacking Fundamentals', issuer: 'Cisco Networking Academy', year: '2025', icon: '🎯', color: 'from-green-400 to-teal-500' },
+    { name: 'Python Essentials 1 & 2', issuer: 'Cisco Networking Academy', year: '2025', icon: '🐍', color: 'from-blue-400 to-indigo-500' },
+    { name: 'Qualys Certified Specialist', issuer: 'Qualys (CyberSecurity Asset Management)', year: '2025', icon: '🛡️', color: 'from-purple-400 to-pink-500' },
+    { name: 'Fortinet Threat Landscape 3.0', issuer: 'Fortinet', year: '2025', icon: '🔒', color: 'from-red-400 to-orange-500' },
+    { name: 'Cybersecurity Virtual Internship', issuer: 'Palo Alto Networks', year: '2023', icon: '☁️', color: 'from-orange-400 to-yellow-400' },
+    { name: 'Web Hacking Course', issuer: 'Udemy', year: '2024', icon: '🌐', color: 'from-cyan-400 to-blue-500' },
+    { name: 'Postman API Testing', issuer: 'Udemy', year: '2024', icon: '📮', color: 'from-orange-300 to-red-400' }
+  ];
+
+  // Real Experience from Resume
+  const experience = [
+    {
+      title: 'Cybersecurity Intern - Scanning Team',
+      company: 'Securium Solutions',
+      period: 'Aug 2025 - Oct 2025',
+      description: 'Worked in scanning team conducting penetration testing on real websites. Performed web security testing on live applications under the Reconnaissance Team.',
+      achievements: [
+        'Conducted penetration testing on live websites',
+        'Used Burp Suite, OWASP ZAP, Nikto, and Nessus',
+        'Strengthened attack surface mapping',
+        'Prepared comprehensive risk reports'
+      ],
+      tech: ['Burp Suite', 'OWASP ZAP', 'Nikto', 'Nessus']
+    },
+    {
+      title: 'Security Research Intern',
+      company: 'Drop Organisation',
+      period: 'Jun 2025 - Jul 2025',
+      description: 'Gained experience in information gathering, bug identification and exploitation. Assisted in threat analysis and incident response projects.',
+      achievements: [
+        'Performed information gathering and reconnaissance',
+        'Bug identification and exploitation techniques',
+        'Network vulnerability detection using Qualys',
+        'Asset analysis and threat analysis'
+      ],
+      tech: ['Qualys', 'Nmap', 'Wireshark', 'Security Research']
+    }
+  ];
+
+  // Stats
+  const stats = [
+    { label: 'CGPA', value: '9.1', icon: <Award className="w-8 h-8" />, color: 'from-yellow-400 to-orange-500' },
+    { label: 'Certifications', value: '8+', icon: <CheckCircle className="w-8 h-8" />, color: 'from-green-400 to-teal-500' },
+    { label: 'Projects', value: '4+', icon: <Code className="w-8 h-8" />, color: 'from-blue-400 to-purple-500' },
+    { label: 'Internships', value: '2', icon: <Users className="w-8 h-8" />, color: 'from-pink-400 to-red-500' }
+  ];
+
+  // Typing effect
+  useEffect(() => {
+    let timeout;
+    const currentText = roles[currentRole];
+    
+    if (typedText.length < currentText.length) {
+      timeout = setTimeout(() => {
+        setTypedText(currentText.slice(0, typedText.length + 1));
+      }, 100);
+    } else {
+      timeout = setTimeout(() => {
+        setTypedText('');
+        setCurrentRole((currentRole + 1) % roles.length);
+      }, 2000);
+    }
+    
+    return () => clearTimeout(timeout);
+  }, [typedText, currentRole]);
+
+  // Mouse tracking
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  // Scroll tracking
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 500);
+      
+      const sections = navItems.map(item => item.id);
+      const current = sections.find(section => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
+        }
+        return false;
+      });
+      if (current) setActiveSection(current);
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const filteredProjects = projectFilter === 'all' 
+    ? projects 
+    : projects.filter(p => p.category === projectFilter);
+
+  const handleChatSubmit = (e) => {
+    e.preventDefault();
+    if (!chatInput.trim()) return;
+    
+    setChatMessages([...chatMessages, { type: 'user', text: chatInput }]);
+    
+    setTimeout(() => {
+      const responses = [
+        "Madhu has 9.1 CGPA and completed internships at Securium Solutions and Drop Organisation!",
+        "He's skilled in Python, Java, SQL, and security tools like Burp Suite and OWASP ZAP!",
+        "Check out his Healthcare Fraud Detection project with 89% accuracy!",
+        "He holds 8+ certifications including Google Cybersecurity and Cisco Ethical Hacking!",
+        "Madhu specializes in VAPT, web security, and bug bounty hunting!"
+      ];
+      setChatMessages(prev => [...prev, { 
+        type: 'bot', 
+        text: responses[Math.floor(Math.random() * responses.length)]
+      }]);
+    }, 1000);
+    
+    setChatInput('');
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    setFormSubmitted(true);
+    setTimeout(() => setFormSubmitted(false), 3000);
+    setFormData({ name: '', email: '', message: '' });
+  };
+
+  const downloadResume = () => {
+    alert('Resume download functionality - Connect to your actual PDF file!');
+  };
+
+  return (
+    <div className={`min-h-screen transition-colors duration-300 ${darkMode ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-900'}`}>
+      {/* Custom Cursor Effect */}
+      <div 
+        className="fixed w-6 h-6 border-2 border-cyan-400 rounded-full pointer-events-none z-50 transition-transform duration-100"
+        style={{ 
+          left: `${mousePosition.x}px`, 
+          top: `${mousePosition.y}px`,
+          transform: 'translate(-50%, -50%)'
+        }}
+      />
+
+      {/* Navigation */}
+      <nav className={`fixed top-0 w-full z-40 backdrop-blur-lg ${darkMode ? 'bg-gray-900/80' : 'bg-white/80'} border-b ${darkMode ? 'border-gray-800' : 'border-gray-200'}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <div className="flex items-center space-x-2">
+              <Shield className="w-8 h-8 text-cyan-400" />
+              <span className="text-xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+                Madhu Jashwanth
+              </span>
             </div>
+
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center space-x-1">
+              {navItems.map(item => (
+                <a
+                  key={item.id}
+                  href={`#${item.id}`}
+                  className={`flex items-center space-x-1 px-4 py-2 rounded-lg transition-all ${
+                    activeSection === item.id
+                      ? 'bg-cyan-500/20 text-cyan-400'
+                      : `${darkMode ? 'text-gray-300 hover:text-cyan-400' : 'text-gray-600 hover:text-cyan-600'}`
+                  }`}
+                >
+                  {item.icon}
+                  <span className="text-sm font-medium">{item.label}</span>
+                </a>
+              ))}
+            </div>
+
+            {/* Theme Toggle & Mobile Menu */}
+            <div className="flex items-center space-x-4">
+              <button
+                onClick={() => setDarkMode(!darkMode)}
+                className="p-2 rounded-lg hover:bg-gray-800/50 transition-colors"
+              >
+                {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+              </button>
+              <button
+                className="md:hidden p-2"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              >
+                {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
+          </div>
+
+          {/* Mobile Menu */}
+          {mobileMenuOpen && (
+            <div className="md:hidden py-4 space-y-2">
+              {navItems.map(item => (
+                <a
+                  key={item.id}
+                  href={`#${item.id}`}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`flex items-center space-x-2 px-4 py-3 rounded-lg ${
+                    activeSection === item.id
+                      ? 'bg-cyan-500/20 text-cyan-400'
+                      : `${darkMode ? 'text-gray-300' : 'text-gray-600'}`
+                  }`}
+                >
+                  {item.icon}
+                  <span>{item.label}</span>
+                </a>
+              ))}
+            </div>
+          )}
         </div>
-    </header>
+      </nav>
 
-    <nav class="nav">
-        <div class="container">
-            <ul class="nav-links">
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#certifications">Certifications</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+      {/* Hero Section */}
+      <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16">
+        {/* Animated Background */}
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(20)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-2 h-2 bg-cyan-400/20 rounded-full animate-pulse"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 2}s`
+              }}
+            />
+          ))}
         </div>
-    </nav>
 
-    <main>
-        <!-- Experience Section -->
-        <section id="experience" class="section fade-in">
-            <div class="container">
-                <h2 class="section-title">Professional Experience</h2>
-                <div class="experience-timeline">
-                    <div class="experience-item">
-                        <div class="experience-date">2025</div>
-                        <div class="experience-content">
-                            <h3 class="experience-title">Cybersecurity Intern</h3>
-                            <h4 class="experience-company">Secuerium Pvt Ltd</h4>
-                            <p class="experience-description">
-                                Gained foundational experience in cybersecurity practices including vulnerability assessments, 
-                                security monitoring, and incident response procedures. Learned to implement security protocols 
-                                and worked on threat detection systems. Developed understanding of enterprise security frameworks 
-                                and contributed to security documentation and awareness programs.
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <div class="experience-item">
-                        <div class="experience-date">2025</div>
-                        <div class="experience-content">
-                            <h3 class="experience-title">Cybersecurity Intern</h3>
-                            <h4 class="experience-company">TDO Tech Education Pvt Ltd</h4>
-                            <p class="experience-description">
-                                Developed foundational cybersecurity knowledge through structured training programs covering 
-                                network security fundamentals, basic penetration testing concepts, and ethical hacking principles. 
-                                Participated in hands-on labs with security tools and learned about common vulnerabilities. 
-                                Gained exposure to cybersecurity best practices and helped create educational materials for 
-                                security awareness training.
-                            </p>
-                        </div>
-                    </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <div className="inline-block px-4 py-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full mb-8 animate-pulse">
+            <span className="text-cyan-400 text-sm font-semibold">🛡️ Available for Opportunities</span>
+          </div>
+
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent animate-fade-in">
+            PONNAPATI MADHU JASHWANTH
+          </h1>
+
+          <div className="h-16 mb-6">
+            <p className="text-2xl md:text-3xl text-cyan-400 font-semibold">
+              {typedText}
+              <span className="animate-pulse">|</span>
+            </p>
+          </div>
+
+          <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-8">
+            Computer Science Engineering Student at Vel Tech University with 9.1 CGPA. 
+            Specializing in Penetration Testing, VAPT, and Web Security. 
+            Experienced in bug bounty hunting and security research.
+          </p>
+
+          <div className="flex flex-wrap items-center justify-center gap-4 mb-12">
+            <a href="mailto:madhujaswanth74@gmail.com" className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg hover:from-cyan-600 hover:to-blue-700 transition-all transform hover:scale-105">
+              <Mail size={20} />
+              <span>Contact Me</span>
+            </a>
+            <button onClick={downloadResume} className="flex items-center space-x-2 px-6 py-3 border-2 border-cyan-500 rounded-lg hover:bg-cyan-500/10 transition-all">
+              <Download size={20} />
+              <span>Download Resume</span>
+            </button>
+            <a href="https://linkedin.com/in/madhu-jashwanth-580238255" target="_blank" rel="noopener noreferrer" className="p-3 border-2 border-gray-700 rounded-lg hover:border-cyan-500 hover:bg-cyan-500/10 transition-all">
+              <Linkedin size={24} />
+            </a>
+            <a href="https://github.com/Jashwanth33" target="_blank" rel="noopener noreferrer" className="p-3 border-2 border-gray-700 rounded-lg hover:border-cyan-500 hover:bg-cyan-500/10 transition-all">
+              <Github size={24} />
+            </a>
+          </div>
+
+          {/* Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+            {stats.map((stat, i) => (
+              <div key={i} className={`p-6 rounded-xl bg-gradient-to-br ${stat.color} bg-opacity-10 border border-gray-800 hover:scale-105 transition-transform`}>
+                <div className="flex justify-center mb-2 text-cyan-400">
+                  {stat.icon}
                 </div>
-            </div>
-        </section>
+                <div className="text-3xl font-bold mb-1">{stat.value}</div>
+                <div className="text-sm text-gray-400">{stat.label}</div>
+              </div>
+            ))}
+          </div>
 
-        <!-- Skills Section -->
-        <section id="skills" class="section fade-in">
-            <div class="container">
-                <h2 class="section-title">Technical Arsenal</h2>
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h3>🛡️ Cybersecurity Fundamentals</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Network Security</span>
-                            <span class="skill-tag">Vulnerability Assessment</span>
-                            <span class="skill-tag">Ethical Hacking Basics</span>
-                            <span class="skill-tag">Security Protocols</span>
-                            <span class="skill-tag">Threat Detection</span>
-                            <span class="skill-tag">Security Awareness</span>
-                            <span class="skill-tag">Risk Assessment</span>
-                            <span class="skill-tag">Incident Response</span>
-                        </div>
-                    </div>
-                    
-                    <div class="skill-category">
-                        <h3>⚡ Security Tools & Technologies</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Wireshark</span>
-                            <span class="skill-tag">Nmap</span>
-                            <span class="skill-tag">Burp Suite</span>
-                            <span class="skill-tag">Kali Linux</span>
-                            <span class="skill-tag">OWASP Guidelines</span>
-                            <span class="skill-tag">Nessus</span>
-                            <span class="skill-tag">Security Scanners</span>
-                        </div>
-                    </div>
-                    
-                    <div class="skill-category">
-                        <h3>🌐 Network Engineering</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">TCP/IP Protocol Suite</span>
-                            <span class="skill-tag">Network Architecture</span>
-                            <span class="skill-tag">Firewall Configuration</span>
-                            <span class="skill-tag">Network Monitoring</span>
-                            <span class="skill-tag">Protocol Analysis</span>
-                            <span class="skill-tag">Network Troubleshooting</span>
-                            <span class="skill-tag">Routing & Switching</span>
-                        </div>
-                    </div>
-                    
-                    <div class="skill-category">
-                        <h3>💻 Software Development</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Python</span>
-                            <span class="skill-tag">Java</span>
-                            <span class="skill-tag">C/C++</span>
-                            <span class="skill-tag">SQL</span>
-                            <span class="skill-tag">Web Development</span>
-                            <span class="skill-tag">Object-Oriented Programming</span>
-                            <span class="skill-tag">Data Structures</span>
-                            <span class="skill-tag">Algorithm Design</span>
-                        </div>
-                    </div>
-                    
-                    <div class="skill-category">
-                        <h3>🤖 AI/ML Background</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Machine Learning</span>
-                            <span class="skill-tag">NumPy/Pandas</span>
-                            <span class="skill-tag">Data Analysis</span>
-                            <span class="skill-tag">Statistical Modeling</span>
-                            <span class="skill-tag">Pattern Recognition</span>
-                            <span class="skill-tag">Predictive Analytics</span>
-                        </div>
-                    </div>
-                    
-                    <div class="skill-category">
-                        <h3>⚙️ Systems & Infrastructure</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Linux/Ubuntu</span>
-                            <span class="skill-tag">Windows Systems</span>
-                            <span class="skill-tag">Database Management</span>
-                            <span class="skill-tag">System Administration</span>
-                            <span class="skill-tag">Version Control (Git)</span>
-                            <span class="skill-tag">Software Testing</span>
-                        </div>
-                    </div>
+          <div className="mt-12 animate-bounce">
+            <ChevronDown size={32} className="mx-auto text-cyan-400" />
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className={`py-20 ${darkMode ? 'bg-gray-800/30' : 'bg-white'}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
+            <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+              About Me
+            </span>
+          </h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mb-12"></div>
+
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
+              <p className="text-lg leading-relaxed">
+                Results-driven Computer Science Engineering student with proven expertise in <span className="text-cyan-400 font-semibold">system design, technical problem-solving, and security implementation</span>. Currently maintaining a <span className="text-cyan-400 font-semibold">9.1 CGPA</span> at Vel Tech University, Chennai.
+              </p>
+              <p className="text-lg leading-relaxed">
+                Strong foundation in <span className="text-cyan-400 font-semibold">software development, infrastructure management, and cybersecurity</span>. Experienced in delivering technical solutions through internships at <span className="text-cyan-400 font-semibold">Securium Solutions</span> and <span className="text-cyan-400 font-semibold">Drop Organisation</span>.
+              </p>
+              <p className="text-lg leading-relaxed">
+                Skilled in <span className="text-cyan-400 font-semibold">penetration testing, vulnerability assessment, and security research</span> with hands-on experience in tools like Burp Suite, OWASP ZAP, Nessus, and Wireshark.
+              </p>
+
+              <div className="flex flex-wrap gap-3 pt-4">
+                {['Problem Solving', 'Teamwork', 'Decision Making', 'Technical Leadership'].map((skill, i) => (
+                  <span key={i} className="px-4 py-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full text-sm font-semibold text-cyan-400">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <div className={`p-6 rounded-xl ${darkMode ? 'bg-gray-800' : 'bg-gray-100'} border ${darkMode ? 'border-gray-700' : 'border-gray-200'}`}>
+                <h3 className="text-xl font-bold mb-4 text-cyan-400">Education</h3>
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="font-semibold text-lg">Vel Tech University, Chennai</h4>
+                    <p className="text-gray-400">B.Tech in Computer Science Engineering</p>
+                    <p className="text-cyan-400 font-bold">CGPA: 9.1/10 (up to 6th semester)</p>
+                    <p className="text-sm text-gray-500">2022 - Present</p>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold">Sai Siddhartha Junior College</h4>
+                    <p className="text-gray-400">Class 12th (MPC)</p>
+                    <p className="text-cyan-400 font-bold">GPA: 8.45/10</p>
+                    <p className="text-sm text-gray-500">2020 - 2022</p>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold">Nehru English Medium High School</h4>
+                    <p className="text-gray-400">Class 10th</p>
+                    <p className="text-cyan-400 font-bold">GPA: 10/10</p>
+                    <p className="text-sm text-gray-500">2019 - 2020</p>
+                  </div>
                 </div>
-            </div>
-        </section>
+              </div>
 
-        <!-- Projects Section -->
-        <section id="projects" class="section fade-in">
-            <div class="container">
-                <h2 class="section-title">Featured Projects</h2>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <h3>🏥 Healthcare Fraud Detection System</h3>
-                        <p>Machine learning system leveraging AI/ML background to identify fraudulent healthcare claims. Implemented data analysis techniques and statistical modeling for pattern recognition in healthcare data.</p>
-                        <div class="project-stats">
-                            <span class="project-stat">89% Accuracy</span>
-                            <span class="project-stat">ML/AI</span>
-                            <span class="project-stat">2025</span>
+              <div className={`p-6 rounded-xl ${darkMode ? 'bg-gray-800' : 'bg-gray-100'} border ${darkMode ? 'border-gray-700' : 'border-gray-200'}`}>
+                <h3 className="text-xl font-bold mb-4 text-cyan-400">Achievements</h3>
+                <ul className="space-y-2">
+                  <li className="flex items-start space-x-2">
+                    <Star className="w-5 h-5 text-yellow-400 mt-1 flex-shrink-0" />
+                    <span>Regular participant in Cisco networking workshops</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <Star className="w-5 h-5 text-yellow-400 mt-1 flex-shrink-0" />
+                    <span>State Level Baseball Competition Participant (2018)</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <Star className="w-5 h-5 text-yellow-400 mt-1 flex-shrink-0" />
+                    <span>Completed multiple security internships</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <section id="skills" className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
+            <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+              Technical Skills
+            </span>
+          </h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mb-12"></div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {skills.map((skillGroup, idx) => (
+              <div key={idx} className={`p-8 rounded-2xl ${darkMode ? 'bg-gray-800' : 'bg-white'} border ${darkMode ? 'border-gray-700' : 'border-gray-200'} hover:scale-105 transition-transform`}>
+                <div className="flex items-center space-x-3 mb-6">
+                  <div className="p-3 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg text-white">
+                    {skillGroup.icon}
+                  </div>
+                  <h3 className="text-2xl font-bold">{skillGroup.category}</h3>
+                </div>
+                <div className="space-y-4">
+                  {skillGroup.items.map((skill, i) => (
+                    <div key={i}>
+                      <div className="flex justify-between mb-2">
+                        <span className="font-medium">{skill.name}</span>
+                        <span className="text-cyan-400 font-bold">{skill.level}%</span>
+                      </div>
+                      <div className="h-3 bg-gray-700 rounded-full overflow-hidden">
+                        <div 
+                          className={`h-full bg-gradient-to-r ${skill.color} rounded-full transition-all duration-1000 relative overflow-hidden`}
+                          style={{ width: `${skill.level}%` }}
+                        >
+                          <div className="absolute inset-0 bg-white/20 animate-pulse"></div>
                         </div>
-                        <p><strong>Technologies:</strong> Python, Scikit-learn, Machine Learning, Pandas, NumPy, Data Analysis</p>
-                        <p><strong>Impact:</strong> Applied AI/ML knowledge to develop fraud detection algorithms with 89% accuracy, demonstrating ability to leverage machine learning for security applications.</p>
+                      </div>
                     </div>
-                    
-                    <div class="project-card">
-                        <h3>🌾 Intelligent Crop Recommendation System</h3>
-                        <p>AI-powered agricultural system providing data-driven crop recommendations based on environmental factors and historical data analysis using machine learning algorithms.</p>
-                        <div class="project-stats">
-                            <span class="project-stat">92% Accuracy</span>
-                            <span class="project-stat">Web App</span>
-                            <span class="project-stat">2024</span>
-                        </div>
-                        <p><strong>Technologies:</strong> Python, Web Development, Machine Learning, Database Management</p>
-                        <p><strong>Impact:</strong> Created user-friendly web application demonstrating full-stack development skills and machine learning integration capabilities.</p>
-                    </div>
-                    
-                    <div class="project-card">
-                        <h3>🌉 Smart Infrastructure Management System</h3>
-                        <p>IoT-based automation platform for hydraulic bridge operations featuring real-time monitoring, predictive maintenance, and automated safety protocols with sensor integration.</p>
-                        <div class="project-stats">
-                            <span class="project-stat">IoT Integration</span>
-                            <span class="project-stat">Embedded Systems</span>
-                            <span class="project-stat">2023</span>
-                        </div>
-                        <p><strong>Technologies:</strong> Arduino, C++, IoT Sensors, Wireless Communication, Web Dashboard</p>
-                        <p><strong>Impact:</strong> Reduced manual intervention by 80% and implemented comprehensive safety protocols with 99.9% uptime reliability.</p>
-                    </div>
+                  ))}
                 </div>
-            </div>
-        </section>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-        <!-- Certifications Section -->
-        <section id="certifications" class="section fade-in">
-            <div class="container">
-                <h2 class="section-title">Professional Certifications</h2>
-                <div class="cert-grid">
-                    <div class="cert-item">
-                        <h4>🛡️ Google Cybersecurity Professional Certificate</h4>
-                        <p>Coursera - 2025</p>
-                        <p>Comprehensive cybersecurity training covering incident response, network security, and risk management</p>
-                    </div>
-                    <div class="cert-item">
-                        <h4>🔐 Ethical Hacking Fundamentals</h4>
-                        <p>Cisco Networking Academy - 2025</p>
-                        <p>Foundational penetration testing techniques and vulnerability assessment methodologies</p>
-                    </div>
-                    <div class="cert-item">
-                        <h4>🐍 Python Essentials 1 & 2</h4>
-                        <p>Cisco Networking Academy - 2025</p>
-                        <p>Python programming for software development and cybersecurity applications</p>
-                    </div>
-                    <div class="cert-item">
-                        <h4>🔒 Cybersecurity Virtual Internship</h4>
-                        <p>Palo Alto Networks - 2023</p>
-                        <p>Introduction to enterprise security solutions and threat intelligence</p>
-                    </div>
-                    <div class="cert-item">
-                        <h4>💻 Python Programming</h4>
-                        <p>Infosys Springboard - 2023</p>
-                        <p>Object-oriented programming and software development fundamentals</p>
-                    </div>
-                    <div class="cert-item">
-                        <h4>📊 Data Structures & Algorithms</h4>
-                        <p>Infosys Springboard - 2023</p>
-                        <p>Algorithmic problem-solving and computational thinking</p>
-                    </div>
+      {/* Experience Section */}
+      <section id="experience" className={`py-20 ${darkMode ? 'bg-gray-800/30' : 'bg-white'}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
+            <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+              Professional Experience
+            </span>
+          </h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mb-12"></div>
+
+          <div className="relative">
+            {/* Timeline Line */}
+            <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-cyan-400 to-blue-600"></div>
+
+            {experience.map((exp, idx) => (
+              <div key={idx} className={`relative mb-12 ${idx % 2 === 0 ? 'md:ml-auto md:pl-12' : 'md:mr-auto md:pr-12'} md:w-1/2`}>
+                {/* Timeline Dot */}
+                <div className="absolute left-8 md:left-auto md:right-auto md:-translate-x-1/2" style={{ left: idx % 2 === 0 ? 'auto' : '2rem', right: idx % 2 === 0 ? '-2rem' : 'auto', top: '2rem' }}>
+                  <div className="w-4 h-4 bg-cyan-400 rounded-full border-4 border-gray-900 shadow-lg shadow-cyan-400/50"></div>
                 </div>
-            </div>
-        </section>
 
-        <!-- Education Section -->
-        <section id="education" class="section fade-in">
-            <div class="container">
-                <h2 class="section-title">Academic Excellence</h2>
-                <div class="education-timeline">
-                    <div class="education-item">
-                        <h3>Bachelor of Technology - Computer Science & Engineering</h3>
-                        <p><strong>Vel Tech University</strong> | Chennai, India | 2022 - 2026</p>
-                        <p class="gpa">CGPA: 9.1/10.0 (Current)</p>
-                        <p><strong>Focus Areas:</strong> Software Development, Cybersecurity, Network Engineering, AI/ML</p>
-                        <p><strong>Relevant Coursework:</strong> Network Security, Cybersecurity Fundamentals, Data Structures, Operating Systems, Database Management Systems, Software Engineering, Computer Networks</p>
-                        <p><strong>Academic Achievements:</strong> Consistent academic performance, Active participation in technical events</p>
-                    </div>
-                    
-                    <div class="education-item">
-                        <h3>Higher Secondary Certificate (Mathematics, Physics, Chemistry)</h3>
-                        <p><strong>Sai Siddhartha Junior College</strong> | Banaganapalli, India | 2020 - 2022</p>
-                        <p class="gpa">CGPA: 8.45/10.0</p>
-                        <p><strong>Foundation:</strong> Strong mathematical and analytical thinking skills</p>
-                    </div>
-                    
-                    <div class="education-item">
-                        <h3>Secondary School Certificate</h3>
-                        <p><strong>Nehru English Medium High School</strong> | Banaganapalli, India | 2019 - 2020</p>
-                        <p class="gpa">CGPA: 10.0/10.0 (Perfect Score)</p>
-                        <p><strong>Achievement:</strong> School Topper, Excellence in Mathematics and Science</p>
-                    </div>
+                <div className={`ml-16 md:ml-0 p-6 rounded-2xl ${darkMode ? 'bg-gray-800' : 'bg-white'} border ${darkMode ? 'border-gray-700' : 'border-gray-200'} hover:scale-105 transition-all hover:shadow-xl hover:shadow-cyan-400/20`}>
+                  <div className="flex flex-wrap items-center justify-between mb-4">
+                    <h3 className="text-xl font-bold text-cyan-400">{exp.title}</h3>
+                    <span className="px-3 py-1 bg-cyan-500/10 border border-cyan-500/30 rounded-full text-sm font-semibold text-cyan-400">
+                      {exp.period}
+                    </span>
+                  </div>
+                  <h4 className="text-lg font-semibold text-blue-400 mb-3">{exp.company}</h4>
+                  <p className="text-gray-400 mb-4">{exp.description}</p>
+                  
+                  <div className="space-y-2 mb-4">
+                    {exp.achievements.map((achievement, i) => (
+                      <div key={i} className="flex items-start space-x-2">
+                        <CheckCircle size={16} className="text-green-400 mt-1 flex-shrink-0" />
+                        <span className="text-sm">{achievement}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="flex flex-wrap gap-2">
+                    {exp.tech.map((tech, i) => (
+                      <span key={i} className="px-3 py-1 bg-blue-500/10 border border-blue-500/30 rounded-full text-xs font-semibold text-blue-400">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-            </div>
-        </section>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="contact-section fade-in">
-            <div class="container">
-                <h2 class="section-title">Let's Build Secure Solutions Together</h2>
-                <p style="color: rgba(255,255,255,0.8); font-size: 1.2rem; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
-                    Fresh Computer Science Engineering graduate with a strong foundation in AI/ML, transitioning to cybersecurity 
-                    and software development. Seeking entry-level positions as Software Engineer, Cybersecurity Specialist, 
-                    or Network Engineer to apply technical skills and contribute to innovative security solutions.
-                </p>
-                <div class="contact-grid">
-                    <div class="contact-card">
-                        <h4>📧 Email Communication</h4>
-                        <a href="mailto:madhujaswanth74@gmail.com">madhujaswanth74@gmail.com</a>
-                        <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.7;">Professional inquiries and job opportunities</p>
-                    </div>
-                    <div class="contact-card">
-                        <h4>📱 Direct Contact</h4>
-                        <a href="tel:+91xxxxxxxxx">+91 xxxxxxxxx</a>
-                        <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.7;">Available for immediate discussion</p>
-                    </div>
-                    <div class="contact-card">
-                        <h4>💼 Professional Network</h4>
-                        <a href="https://linkedin.com/in/madhu-jashwanth-580238255" target="_blank">LinkedIn Profile</a>
-                        <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.7;">Connect for networking and career opportunities</p>
-                    </div>
-                    <div class="contact-card">
-                        <h4>🔗 Code Repository</h4>
-                        <a href="https://github.com/Jashwanth33" target="_blank">GitHub Portfolio</a>
-                        <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.7;">Explore projects and coding capabilities</p>
-                    </div>
+      {/* Projects Section */}
+      <section id="projects" className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
+            <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+              Featured Projects
+            </span>
+          </h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mb-8"></div>
+
+          {/* Project Filters */}
+          <div className="flex flex-wrap justify-center gap-3 mb-12">
+            {['all', 'security', 'ml', 'webapp', 'iot'].map(filter => (
+              <button
+                key={filter}
+                onClick={() => setProjectFilter(filter)}
+                className={`px-6 py-2 rounded-full font-semibold transition-all ${
+                  projectFilter === filter
+                    ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white'
+                    : `${darkMode ? 'bg-gray-800 text-gray-300' : 'bg-gray-200 text-gray-700'} hover:bg-cyan-500/20`
+                }`}
+              >
+                {filter.charAt(0).toUpperCase() + filter.slice(1)}
+              </button>
+            ))}
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {filteredProjects.map((project, idx) => (
+              <div key={idx} className={`group p-6 rounded-2xl ${darkMode ? 'bg-gray-800' : 'bg-white'} border ${darkMode ? 'border-gray-700' : 'border-gray-200'} hover:scale-105 transition-all hover:shadow-xl hover:shadow-cyan-400/20`}>
+                <div className="text-6xl mb-4">{project.image}</div>
+                <h3 className="text-2xl font-bold mb-3 group-hover:text-cyan-400 transition-colors">{project.title}</h3>
+                <p className="text-gray-400 mb-4">{project.description}</p>
+
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {Object.entries(project.stats).map(([key, value], i) => (
+                    <span key={i} className="px-3 py-1 bg-purple-500/10 border border-purple-500/30 rounded-full text-xs font-bold text-purple-400">
+                      {value}
+                    </span>
+                  ))}
                 </div>
+
+                <div className="space-y-2 mb-4">
+                  {project.features.map((feature, i) => (
+                    <div key={i} className="flex items-center space-x-2">
+                      <Zap size={14} className="text-yellow-400" />
+                      <span className="text-sm">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.tech.map((tech, i) => (
+                    <span key={i} className="px-3 py-1 bg-cyan-500/10 border border-cyan-500/30 rounded-full text-xs font-semibold text-cyan-400">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="flex gap-3">
+                  <a href={project.demoLink} className="flex-1 flex items-center justify-center space-x-2 px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg hover:from-cyan-600 hover:to-blue-700 transition-all">
+                    <Play size={16} />
+                    <span className="text-sm font-semibold">Demo</span>
+                  </a>
+                  <a href={project.githubLink} className="flex-1 flex items-center justify-center space-x-2 px-4 py-2 border-2 border-cyan-500 rounded-lg hover:bg-cyan-500/10 transition-all">
+                    <Github size={16} />
+                    <span className="text-sm font-semibold">Code</span>
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Certifications Section */}
+      <section id="certifications" className={`py-20 ${darkMode ? 'bg-gray-800/30' : 'bg-white'}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
+            <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+              Certifications & Achievements
+            </span>
+          </h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mb-12"></div>
+
+          <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {certifications.map((cert, idx) => (
+              <div key={idx} className={`group p-6 rounded-2xl ${darkMode ? 'bg-gray-800' : 'bg-white'} border ${darkMode ? 'border-gray-700' : 'border-gray-200'} text-center hover:scale-110 transition-all hover:shadow-xl hover:shadow-cyan-400/20`}>
+                <div className="text-5xl mb-3">{cert.icon}</div>
+                <h4 className="font-bold mb-2 text-lg group-hover:text-cyan-400 transition-colors">{cert.name}</h4>
+                <p className="text-sm text-gray-400 mb-1">{cert.issuer}</p>
+                <p className="text-xs font-semibold text-cyan-400">{cert.year}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
+            <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+              Get In Touch
+            </span>
+          </h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mb-8"></div>
+          <p className="text-center text-gray-400 mb-12 text-lg">
+            Open to internship opportunities, collaborations, and cybersecurity projects
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
+            <div className={`p-6 rounded-2xl ${darkMode ? 'bg-gray-800' : 'bg-white'} border ${darkMode ? 'border-gray-700' : 'border-gray-200'} hover:scale-105 transition-all`}>
+              <Mail className="w-12 h-12 text-cyan-400 mb-4" />
+              <h3 className="text-xl font-bold mb-2">Email</h3>
+              <a href="mailto:madhujaswanth74@gmail.com" className="text-gray-400 hover:text-cyan-400">
+                madhujaswanth74@gmail.com
+              </a>
             </div>
-        </section>
-    </main>
 
-    <script>
-        // Matrix Rain Effect
-        const canvas = document.getElementById('matrixCanvas');
-        const ctx = canvas.getContext('2d');
+            <div className={`p-6 rounded-2xl ${darkMode ? 'bg-gray-800' : 'bg-white'} border ${darkMode ? 'border-gray-700' : 'border-gray-200'} hover:scale-105 transition-all`}>
+              <Globe className="w-12 h-12 text-cyan-400 mb-4" />
+              <h3 className="text-xl font-bold mb-2">Phone</h3>
+              <a href="tel:+919347656687" className="text-gray-400 hover:text-cyan-400">
+                +91 93476 56687
+              </a>
+            </div>
+          </div>
 
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+          <form onSubmit={handleFormSubmit} className={`p-8 rounded-2xl ${darkMode ? 'bg-gray-800' : 'bg-white'} border ${darkMode ? 'border-gray-700' : 'border-gray-200'}`}>
+            <div className="space-y-6">
+              <div>
+                <label className="block text-sm font-semibold mb-2">Name</label>
+                <input
+                  type="text"
+                  value={formData.name}
+                  onChange={(e) => setFormData({...formData, name: e.target.value})}
+                  className={`w-full px-4 py-3 rounded-lg ${darkMode ? 'bg-gray-900 border-gray-700' : 'bg-gray-100 border-gray-300'} border focus:border-cyan-400 focus:outline-none transition-colors`}
+                  placeholder="Your name"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold mb-2">Email</label>
+                <input
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) => setFormData({...formData, email: e.target.value})}
+                  className={`w-full px-4 py-3 rounded-lg ${darkMode ? 'bg-gray-900 border-gray-700' : 'bg-gray-100 border-gray-300'} border focus:border-cyan-400 focus:outline-none transition-colors`}
+                  placeholder="your.email@example.com"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold mb-2">Message</label>
+                <textarea
+                  value={formData.message}
+                  onChange={(e) => setFormData({...formData, message: e.target.value})}
+                  rows={5}
+                  className={`w-full px-4 py-3 rounded-lg ${darkMode ? 'bg-gray-900 border-gray-700' : 'bg-gray-100 border-gray-300'} border focus:border-cyan-400 focus:outline-none transition-colors resize-none`}
+                  placeholder="Your message..."
+                  required
+                />
+              </div>
+              <button
+                type="submit"
+                className="w-full py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg font-bold text-lg hover:from-cyan-600 hover:to-blue-700 transition-all transform hover:scale-105"
+              >
+                Send Message
+              </button>
+              {formSubmitted && (
+                <div className="flex items-center justify-center space-x-2 text-green-400">
+                  <CheckCircle size={20} />
+                  <span>Message sent successfully!</span>
+                </div>
+              )}
+            </div>
+          </form>
 
-        const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}";
-        const matrixArray = matrix.split("");
+          <div className="flex justify-center space-x-6 mt-12">
+            <a href="https://linkedin.com/in/madhu-jashwanth-580238255" target="_blank" rel="noopener noreferrer" className="p-4 rounded-full bg-cyan-500/10 border border-cyan-500/30 hover:bg-cyan-500/20 transition-all hover:scale-110">
+              <Linkedin size={24} className="text-cyan-400" />
+            </a>
+            <a href="https://github.com/Jashwanth33" target="_blank" rel="noopener noreferrer" className="p-4 rounded-full bg-cyan-500/10 border border-cyan-500/30 hover:bg-cyan-500/20 transition-all hover:scale-110">
+              <Github size={24} className="text-cyan-400" />
+            </a>
+            <a href="https://twitter.com/MadhuJashwanth" target="_blank" rel="noopener noreferrer" className="p-4 rounded-full bg-cyan-500/10 border border-cyan-500/30 hover:bg-cyan-500/20 transition-all hover:scale-110">
+              <Twitter size={24} className="text-cyan-400" />
+            </a>
+          </div>
+        </div>
+      </section>
 
-        const font_size = 10;
-        const columns = canvas.width / font_size;
+      {/* AI Chatbot */}
+      {showChatbot && (
+        <div className="fixed bottom-24 right-6 w-80 h-96 bg-gray-800 rounded-2xl shadow-2xl border border-cyan-500/30 flex flex-col z-50">
+          <div className="p-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-t-2xl flex items-center justify-between">
+            <div className="flex items-center space-x-2">
+              <MessageSquare size={20} />
+              <span className="font-bold">AI Assistant</span>
+            </div>
+            <button onClick={() => setShowChatbot(false)}>
+              <X size={20} />
+            </button>
+          </div>
+          <div className="flex-1 overflow-y-auto p-4 space-y-3">
+            {chatMessages.map((msg, i) => (
+              <div key={i} className={`flex ${msg.type === 'user' ? 'justify-end' : 'justify-start'}`}>
+                <div className={`max-w-[80%] p-3 rounded-lg ${msg.type === 'user' ? 'bg-cyan-500 text-white' : 'bg-gray-700'}`}>
+                  {msg.text}
+                </div>
+              </div>
+            ))}
+          </div>
+          <form onSubmit={handleChatSubmit} className="p-4 border-t border-gray-700">
+            <div className="flex space-x-2">
+              <input
+                type="text"
+                value={chatInput}
+                onChange={(e) => setChatInput(e.target.value)}
+                className="flex-1 px-3 py-2 bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                placeholder="Ask me anything..."
+              />
+              <button type="submit" className="px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg hover:from-cyan-600 hover:to-blue-700">
+                <Send size={20} />
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
 
-        const drops = [];
-        for (let x = 0; x < columns; x++) {
-            drops[x] = 1;
-        }
+      {/* Chatbot Toggle Button */}
+      <button
+        onClick={() => setShowChatbot(!showChatbot)}
+        className="fixed bottom-6 right-6 p-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full shadow-lg hover:shadow-cyan-400/50 transition-all hover:scale-110 z-50"
+      >
+        <MessageSquare size={24} />
+      </button>
 
-        function drawMatrix() {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+      {/* Scroll to Top Button */}
+      {showScrollTop && (
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="fixed bottom-24 left-6 p-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full shadow-lg hover:shadow-cyan-400/50 transition-all hover:scale-110 z-50"
+        >
+          <ChevronDown size={24} className="transform rotate-180" />
+        </button>
+      )}
 
-            ctx.fillStyle = '#00ff88';
-            ctx.font = font_size + 'px monospace';
+      {/* Footer */}
+      <footer className={`py-8 border-t ${darkMode ? 'border-gray-800 bg-gray-900' : 'border-gray-200 bg-white'}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="text-gray-400">
+            © 2025 Ponnapati Madhu Jashwanth. Built with React & Tailwind CSS
+          </p>
+          <p className="text-sm text-gray-500 mt-2">
+            Designed for modern web standards | Optimized for performance
+          </p>
+        </div>
+      </footer>
+    </div>
+  );
+};
 
-            for (let i = 0; i < drops.length; i++) {
-                const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
-                ctx.fillText(text, i * font_size, drops[i] * font_size);
+// Add missing Send icon
+const Send = ({ size = 24 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="22" y1="2" x2="11" y2="13"></line>
+    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+  </svg>
+);
 
-                if (drops[i] * font_size > canvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
-                }
-                drops[i]++;
-            }
-        }
-
-        setInterval(drawMatrix, 35);
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        // Observe all fade-in elements
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Parallax scrolling effect
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallax = document.querySelector('.header');
-            const speed = scrolled * 0.5;
-            parallax.style.transform = `translateY(${speed}px)`;
-        });
-
-        // Dynamic particle generation
-        function createParticle() {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            
-            const size = Math.random() * 4 + 1;
-            particle.style.width = `${size}px`;
-            particle.style.height = `${size}px`;
-            
-            particle.style.left = `${Math.random() * 100}%`;
-            particle.style.top = `${Math.random() * 100}%`;
-            
-            particle.style.animationDelay = `${Math.random() * 6}s`;
-            particle.style.animationDuration = `${Math.random() * 4 + 4}s`;
-            
-            document.body.appendChild(particle);
-            
-            setTimeout(() => {
-                particle.remove();
-            }, 8000);
-        }
-
-        // Generate particles periodically
-        setInterval(createParticle, 2000);
-
-        // Resize canvas on window resize
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-
-        // Add typing effect to hero title
-        function typeWriter(element, text, speed = 100) {
-            let i = 0;
-            element.innerHTML = '';
-            function type() {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                }
-            }
-            type();
-        }
-
-        // Initialize typing effect on page load
-        window.addEventListener('load', () => {
-            const heroTitle = document.querySelector('.hero-title');
-            const originalText = heroTitle.textContent;
-            typeWriter(heroTitle, originalText, 50);
-        });
-    </script>
-</body>
-</html>
-
+export default Portfolio;
